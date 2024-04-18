@@ -2,6 +2,7 @@ package infra
 
 import (
 	"context"
+	"github.com/easyship/util"
 )
 
 func Init(ctx context.Context) error {
@@ -9,5 +10,6 @@ func Init(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
+	util.InitEnv()
 	return nil
 }
