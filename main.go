@@ -24,6 +24,7 @@ func main() {
 	//静态文件资源
 	router.Static("/static", "./static")
 	router.Static("/js", "./html/js")
+	router.Static("/css", "./html/css")
 	router.Static("/jquery", "./html/jquery")
 	router.GET(
 		"/", controller.IndexHandler)

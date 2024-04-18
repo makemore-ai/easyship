@@ -1,0 +1,155 @@
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 使body占据整个视口的高度 */
+    overflow: auto; /* 隐藏溢出的内容 */
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* 垂直排列子元素 */
+    align-items: center;
+}
+
+.logo {
+    /* 容器样式 */
+    display: flex;
+    align-items: center; /* 子元素在容器中垂直居中 */
+    font-size: 2.25rem;
+    font-family: 'Microsoft YaHei', ui-sans-serif; /* 使用Arial字体或你选择的字体 */
+    line-height: 2.5rem;
+    margin-bottom: 25px;
+    color: #6e6b6b; /* 设置字体颜色为灰色 */
+    margin-top: 200px;
+}
+
+.search-container {
+    position: relative; /* 为内部绝对定位元素提供定位上下文 */
+    align-items: center; /* 子元素在容器中垂直居中 */
+
+}
+
+.search-box {
+    width: 500px; /* 调整宽度 */
+    padding: 15px 30px 20px 15px; /* 右侧留出空间给箭头 */
+    border: 2px solid #d3d3d3; /* 浅灰色边框 */
+    border-radius: 5px;
+    font-size: 16px;
+    position: relative; /* 为箭头提供定位上下文 */
+    background-color: white; /* 确保箭头背景与输入框背景一致 */
+}
+
+.search-arrow {
+    position: absolute;
+    right: 10px; /* 距离输入框右侧的距离 */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 确保垂直居中 */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent; /* 上边框透明 */
+    border-bottom: 10px solid transparent; /* 下边框透明 */
+    border-left: 20px solid #d3d3d3; /* 左边框为箭头颜色 */
+    cursor: pointer; /* 鼠标悬停时显示可点击 */
+    transition: border-color 0.3s ease;
+}
+
+.search-arrow:hover {
+    border-left-color: #808080; /* 鼠标悬停时颜色变深 */
+    /* 可以添加其他样式变化，如cursor: pointer; 表示可点击 */
+}
+
+/* 点击后的样式 */
+.search-arrow.active {
+    border-left-color: #808080; /* 点击后颜色变深 */
+}
+
+.logo_text {
+    /* 容器样式 */
+    display: flex;
+    align-items: center; /* 子元素在容器中垂直居中 */
+    font-size: 16px; /* 或您需要的字体大小 */
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    margin-bottom: 16px; /* 与搜索框之间的间距 */
+    color: #4caf98;
+}
+
+.recommend-modules {
+    display: flex;
+    width: 680px;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 两端对齐，调整间距 */
+}
+
+.title-text {
+    display: flex;
+
+    width: 680px;
+    margin-bottom: 10px;
+    height: 0.5em;
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 20px;
+    color: #6e6b6b; /* 设置字体颜色为灰色 */
+}
+
+.content-module {
+    width: 280px; /* 减去一些间距 */
+    background-color: #fff; /* 默认背景色 */
+    padding: 10px 20px;
+    border: none; /* 边框 */
+    transition: background-color 0.3s ease; /* 背景色变化的过渡效果 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 10px;
+    position: relative; /* 便于定位滚动条 */
+    overflow-y: auto;
+}
+
+.content-module.scrollable-content {
+    max-height: 200px; /* 设置内容区域的最大高度 */
+    overflow-y: auto; /* 允许内容区域垂直滚动 */
+    padding-right: 15px; /* 为滚动条预留空间（可选） */
+}
+
+.copy-button {
+    position: absolute; /* 使用绝对定位 */
+    top: 3px; /* 距离div顶部10px */
+    right: 10px; /* 距离div右侧10px */
+    padding: 2px 5px; /* 内边距 */
+    font-size: 7px;
+    font-weight: bold;
+    background-color: #d5d1d1; /* 鼠标悬停时的背景色 */
+    border: none;
+}
+
+.copy-button:hover {
+    background-color: #424242; /* 鼠标悬停时的背景色 */
+    color: #111010; /* 可选：鼠标悬停时的文字颜色 */
+}
+
+
+.content-module h2 {
+    color: #4d6972;
+    font-weight: bold; /* 加粗 */
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif; /* 非黑体 */
+}
+
+.content-module p {
+    color: #4d6972; /* 深蓝色 */
+    font-family: 'Arial', sans-serif; /* 非黑体 */
+    line-height: 1.5em;
+    max-height: 9.8em; /* 假设一行文字高度为20px，则5行文字高度为100px */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5.5; /* 限制显示的行数 */
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    font-size: 13px;
+}
