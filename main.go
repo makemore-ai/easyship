@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/easyship/controller"
 	"github.com/easyship/infra"
+	"github.com/easyship/infra/middleware"
 	"github.com/easyship/util/log"
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +28,7 @@ func main() {
 	router.Static("/css", "./html/css")
 	router.Static("/jquery", "./html/jquery")
 	router.GET(
-		"/", controller.IndexHandler)
+		"/", middleware.UserMiddleware, controller.IndexHandler)
 	router.POST(
 		"/searchPrompt", controller.PromptSearchHandle)
 	err = router.Run()

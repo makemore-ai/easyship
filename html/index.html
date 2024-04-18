@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Make More.AI搜索</title>
-    <link rel="stylesheet" type="text/css" href="./css/index_mobile.css">
+    {{if .isMobile}}
+        <link rel="stylesheet" type="text/css" href="./css/index_mobile.css">
+    {{else}}
+        <link rel="stylesheet" type="text/css" href="./css/index_pc.css">
+    {{end}}
 </head>
 <body>
 
