@@ -14,5 +14,5 @@ func ErrorWithContext(ctx context.Context, format string, args ...interface{}) {
 }
 
 func WarnWithContext(ctx context.Context, format string, args ...interface{}) {
-	logrus.WithContext(ctx).Errorf(format, args...)
+	logrus.WithContext(ctx).Warnf(format, args...)
 }

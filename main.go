@@ -31,6 +31,8 @@ func main() {
 		"/", middleware.UserMiddleware, controller.IndexHandler)
 	router.POST(
 		"/searchPrompt", controller.PromptSearchHandle)
+	router.GET(
+		"/refreshPrompt", controller.RefreshPromptHandler)
 	err = router.Run()
 	if err != nil {
 		print(err)

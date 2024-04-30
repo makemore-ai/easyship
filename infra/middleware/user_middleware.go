@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/easyship/infra"
+	"github.com/easyship/infra/constant"
 	"github.com/easyship/model"
 	"github.com/easyship/util/log"
 	"github.com/gin-gonic/gin"
@@ -28,5 +28,5 @@ func UserMiddleware(ctx *gin.Context) {
 		IsMobile: isMobile,
 	}
 	log.InfoWithContext(ctx, "IsMobile:%v", isMobile)
-	ctx.Set(infra.USER_INFO, requestUserInfo)
+	ctx.Set(constant.USER_INFO, requestUserInfo)
 }

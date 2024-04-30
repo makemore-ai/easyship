@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/easyship/config"
-	"github.com/easyship/infra"
+	"github.com/easyship/infra/constant"
 	"github.com/easyship/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -10,7 +10,7 @@ import (
 
 func IndexHandler(ctx *gin.Context) {
 	recommendPromptList := config.GetRecommendPromptList(ctx)
-	requestUserInfoModel, _ := ctx.Get(infra.USER_INFO)
+	requestUserInfoModel, _ := ctx.Get(constant.USER_INFO)
 	requestUserInfo, _ := requestUserInfoModel.(*model.RequestUserInfo)
 	ctx.HTML(http.StatusOK, "index.html", gin.H{
 		"recommend_prompt_list": recommendPromptList,

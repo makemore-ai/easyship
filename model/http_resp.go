@@ -5,3 +5,13 @@ type CommonResponse struct {
 	StatusText string      `json:"status_text"`
 	Data       interface{} `json:"data"`
 }
+
+type StreamResult struct {
+	Id    int32
+	Event string
+	Data  *string
+}
+
+type IdCal struct {
+	NowId *int32
+}

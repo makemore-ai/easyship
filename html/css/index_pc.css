@@ -153,3 +153,18 @@ body {
     overflow-y: auto;
     font-size: 13px;
 }
+
+.refresh_prompt {
+    width: 620px;
+    margin: 20px 10px;
+    background-color: #fff; /* 默认背景色 */
+    padding: 10px 20px;
+    transition: background-color 0.3s ease; /* 背景色变化的过渡效果 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: None;
+    color: #4d6972;
+}
+
+.refresh_module {
+    position: relative; /* 便于定位滚动条 */
+}

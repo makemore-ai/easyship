@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-func SearchPrompt(ctx context.Context, searchText *string) (*dto_model.PromptDTO, error) {
+func SearchPrompt(ctx context.Context, searchText *string) (*dto_model.PromptSearchDTO, error) {
 	doQuery := !(searchText == nil || len(strings.TrimSpace(*searchText)) == 0)
 	var promptList []*vo.PromptVO
 	if doQuery {
@@ -29,7 +29,7 @@ func SearchPrompt(ctx context.Context, searchText *string) (*dto_model.PromptDTO
 
 	recommendPromptList := config.GetRecommendPromptList(ctx)
 
-	return &dto_model.PromptDTO{
+	return &dto_model.PromptSearchDTO{
 		SearchPromptList:    promptList,
 		RecommendPromptList: recommendPromptList,
 	}, nil

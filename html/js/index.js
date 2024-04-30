@@ -1,27 +1,51 @@
 // 获取searchArrow和searchInput元素
 var searchArrow = document.getElementById('searchArrow');
 var searchInput = document.getElementById('searchInput');
+//默认不展示
+document.getElementById('refresh-div').style.display = 'none';
 // 为searchArrow添加点击事件监听器
 searchArrow.addEventListener('click', function () {
     this.classList.add('active'); // 点击时添加active类
-    performSearch(); // 执行搜索函数
+    doSearch()
 });
+
+document.getElementById('text-refresh').addEventListener('mouseleave', function (event) {
+    console.log('mouse over')
+    // 阻止默认滚动行为
+    document.body.style.overflow = 'auto'
+})
+
+document.getElementById('text-refresh').addEventListener('mouseenter', function (event) {
+    // 阻止默认滚动行为
+    document.body.style.overflow = 'hidden'
+})
 
 // 为searchInput添加回车事件监听器
 searchInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') { // 检查按键码是否为回车（键码13）
         event.preventDefault(); // 阻止默认的回车行为（如提交表单）
         searchArrow.classList.add('active'); // 添加active类以改变箭头颜色
-        performSearch(); // 执行搜索函数
+        doSearch()
     }
 });
+
+function doSearch() {
+    let searchTerm = searchInput.value; // 获取输入框中的值
+    if (searchTerm === undefined || searchTerm === '' || searchTerm == null) {
+        // 展示推荐模块
+        document.getElementById('refresh-div').style.display = '';
+    } else {
+        performRefresh(searchTerm)
+        performSearch(searchTerm); // 执行搜索函数
+        //隐藏推荐模块
+        document.getElementById('recommend-div').style.display = 'None';
+    }
+}
 function addButtonCopy() {
-    console.log("add bUTTON")
     var textCopyButtonList = document.getElementsByClassName('copy-button');
     if (textCopyButtonList.length > 0) {
         for (var i = 0; i < textCopyButtonList.length; ++i) {
             let item = textCopyButtonList[i];
-            console.log(item.id)
             item.addEventListener('click', function () {
                 let buttonId = item.id
                 let buttonInfos = buttonId.split('-');
@@ -30,7 +54,6 @@ function addButtonCopy() {
 
                 navigator.clipboard.writeText(textElement.textContent.trim())
                     .then(function () {
-                        console.log('复制成功！');
                         // 可以给用户一些反馈，比如改变按钮的文本或显示一个提示
                         item.textContent = 'Success';
                         // 可选：稍后将按钮文本恢复为原始值
@@ -49,8 +72,7 @@ function addButtonCopy() {
 }
 addButtonCopy()
 // 执行搜索的函数
-function performSearch() {
-    var searchTerm = searchInput.value; // 获取输入框中的值
+function performSearch(searchTerm) {
     let searchDiv = document.getElementById('search-div');
     searchDiv.innerHTML = ""
     if(searchTerm.trim() === "") {
@@ -72,7 +94,6 @@ function performSearch() {
             return response.json()
         })
         .then(data => {
-            console.log(!data['status'])
             if(data['status'] !== 0 || !data['data']) {
                 throw new Error('System Error');
             }
@@ -106,4 +127,45 @@ function performSearch() {
             // 在这里处理错误
         })
 
+}
+
+function performRefresh(searchTerm) {
+    document.getElementById('refresh-div').value = '';
+    document.getElementById('refresh-div').style.display = '';
+    var refreshSSE = new EventSource('/refreshPrompt?prompt=' + searchTerm)
+    refreshSSE.addEventListener("continue", function(e) {
+        if (typeof e.data !== undefined && e.data !== "" &&  e.data != null) {
+            handleSSEStreamData(refreshSSE, e.data)
+        }
+    })
+    refreshSSE.addEventListener("stop", function(e) {
+        if (typeof e.data !== undefined && e.data !== "" &&  e.data != null) {
+            handleSSEStreamData(refreshSSE, e.data)
+        }
+        refreshSSE.close()
+    })
+    refreshSSE.onerror = function (e) {
+        refreshSSE.close()
+    }
+}
+function handleSSEStreamData(refreshSSE, data) {
+    let strList =  splitByNewline(data)
+    let dataStr = strList[1]
+    let dataObj = JSON.parse(dataStr)
+    // 错误 返回停止
+    if(dataObj.status !== 0) {
+        refreshSSE.close()
+        return
+    }
+    let searchInput = document.getElementById('text-refresh');
+    if (typeof dataObj.data === undefined || dataObj.data === "" || dataObj.data == null) {
+        //空值不做处理
+        return
+    }
+    searchInput.value = dataObj.data
+}
+function splitByNewline(str) {
+    // 使用正则表达式匹配所有类型的换行符
+    const regex = /\r\n|\n|\r/;
+    return str.split(regex);
 }
