@@ -52,7 +52,7 @@ function addButtonCopy() {
                 let textId = "text-" + buttonInfos[1]
                 let textElement = document.getElementById(textId)
 
-                navigator.clipboard.writeText(textElement.textContent.trim())
+                niavigator.clipboard.writeText(textElement.textContent.trim())
                     .then(function () {
                         // 可以给用户一些反馈，比如改变按钮的文本或显示一个提示
                         item.textContent = 'Success';
