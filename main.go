@@ -27,6 +27,7 @@ func main() {
 	router.Static("/js", "./html/js")
 	router.Static("/css", "./html/css")
 	router.Static("/jquery", "./html/jquery")
+	router.Static("/page", "./html")
 	router.GET(
 		"/", middleware.UserMiddleware, controller.IndexHandler)
 	router.POST(
