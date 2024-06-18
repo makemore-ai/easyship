@@ -28,6 +28,7 @@ func main() {
 	router.Static("/css", "./html/css")
 	router.Static("/jquery", "./html/jquery")
 	router.Static("/page", "./html")
+	router.Static("/yd-pdf", "./static")
 	router.GET(
 		"/", middleware.UserMiddleware, controller.IndexHandler)
 	router.POST(
