@@ -12,7 +12,7 @@ func IndexHandler(ctx *gin.Context) {
 	recommendPromptList := config.GetRecommendPromptList(ctx)
 	requestUserInfoModel, _ := ctx.Get(constant.USER_INFO)
 	requestUserInfo, _ := requestUserInfoModel.(*model.RequestUserInfo)
-	ctx.HTML(http.StatusOK, "index.html", gin.H{
+	ctx.HTML(http.StatusOK, "prompt.html", gin.H{
 		"recommend_prompt_list": recommendPromptList,
 		"isMobile":              requestUserInfo.IsMobile,
 	})

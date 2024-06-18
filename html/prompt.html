@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Make More.AI搜索</title>
+    {{if .isMobile}}
+        <link rel="stylesheet" type="text/css" href="./css/index_mobile.css">
+    {{else}}
+        <link rel="stylesheet" type="text/css" href="./css/index_pc.css">
+    {{end}}
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-55D7E0XKGN"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-55D7E0XKGN');
+</script>
+
+<body>
+
+<div class="content">
+    <div class="logo">
+        To Make More.AI
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="输入Prompt需求...">
+        <div id="searchArrow" class="search-arrow"></div>
+    </div>
+    <div id="refresh-div" class="recommend-modules">
+        <p class="title-text">Prompt润色结果:</p>
+        <div id = "refresh_module" class="refresh_module">
+            <button id="textCopyButton-refresh" class="copy-button">Copy</button>
+            <textarea id="text-refresh"  class="refresh_prompt" readonly="readonly" rows="15" cols="30"></textarea>
+        </div>
+    </div>
+    <div id="search-div" class="recommend-modules"></div>
+    <div id="recommend-div" class="recommend-modules">
+        <p class = "title-text">推荐Prompt：</p>
+        {{ range .recommend_prompt_list }}
+        <div class="content-module">
+            <button id={{printf "textCopyButton-%d"  .Id}} class="copy-button">Copy</button>
+            <h3>{{ .LabelName}}</h3>
+            <p id={{printf "text-%d"  .Id}}>
+            {{ .PromptZh}}
+            </p>
+        </div>
+        {{end}}
+    </div>
+
+</div>
+
+</body>
+</html>
+<script src="./jquery/marked.min.js"></script>
+<script src="./jquery/jquery-3.7.1.min.js"></script>
+<script src="js/index.js"></script>

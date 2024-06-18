@@ -4,58 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Make More.AI搜索</title>
-    {{if .isMobile}}
-        <link rel="stylesheet" type="text/css" href="./css/index_mobile.css">
-    {{else}}
-        <link rel="stylesheet" type="text/css" href="./css/index_pc.css">
-    {{end}}
+    <title>武汉远东电气</title>
+
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-55D7E0XKGN"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<style>
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column; /* 垂直排列子元素 */
+        align-items: center;
+        margin-top: 100px;
+    }
+    .yd-info {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        margin-top: 0;
+        font-size: 0.8rem;
+        margin-bottom: 60px;
 
-    gtag('config', 'G-55D7E0XKGN');
-</script>
-
+    }
+    .relation-info {
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+</style>
 <body>
 
 <div class="content">
-    <div class="logo">
-        To Make More.AI
-    </div>
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="输入Prompt需求...">
-        <div id="searchArrow" class="search-arrow"></div>
-    </div>
-    <div id="refresh-div" class="recommend-modules">
-        <p class="title-text">Prompt润色结果:</p>
-        <div id = "refresh_module" class="refresh_module">
-            <button id="textCopyButton-refresh" class="copy-button">Copy</button>
-            <textarea id="text-refresh"  class="refresh_prompt" readonly="readonly" rows="15" cols="30"></textarea>
-        </div>
-    </div>
-    <div id="search-div" class="recommend-modules"></div>
-    <div id="recommend-div" class="recommend-modules">
-        <p class = "title-text">推荐Prompt：</p>
-        {{ range .recommend_prompt_list }}
-        <div class="content-module">
-            <button id={{printf "textCopyButton-%d"  .Id}} class="copy-button">Copy</button>
-            <h3>{{ .LabelName}}</h3>
-            <p id={{printf "text-%d"  .Id}}>
-            {{ .PromptZh}}
-            </p>
-        </div>
-        {{end}}
-    </div>
-
+    <h2 class="yd-name">
+        武汉远东电器制造有限责任公司
+    </h2>
+    <p class="yd-info">
+        箱变，高低压配电设备，户外环网箱，密集母线专业制造商
+    </p>
+    <p class="relation-info">
+        售后人员：刘小彪
+    </p>
+    <p class="relation-info">
+        售后电话：<a href="tel://13477471147">13477471147</a>
+    </p>
+    <p class="yd-info">
+        <a href="http://www.whydzz.com/">点击查看图纸</a>
+    </p>
+    <p class="yd-info">
+        <a href="http://www.whydzz.com/">了解更多</a>
+    </p>
 </div>
-
 </body>
-</html>
-<script src="./jquery/marked.min.js"></script>
-<script src="./jquery/jquery-3.7.1.min.js"></script>
-<script src="js/index.js"></script>
+
