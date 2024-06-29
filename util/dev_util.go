@@ -1,6 +1,10 @@
 package util
 
-import "os"
+import (
+	"context"
+	"github.com/easyship/util/log"
+	"os"
+)
 
 type EnvName string
 
@@ -16,7 +20,7 @@ func InitEnv() {
 		env = PROD
 	}
 	env = DEV
-
+	log.InfoWithContext(context.Background(), "init env:%v", env)
 }
 
 // 是否为测试环境
