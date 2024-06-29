@@ -18,8 +18,9 @@ var env EnvName = DEV
 func InitEnv() {
 	if os.Getenv("env") == string(PROD) {
 		env = PROD
+	} else {
+		env = DEV
 	}
-	env = DEV
 	log.InfoWithContext(context.Background(), "init env:%v", env)
 }
 
