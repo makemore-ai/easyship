@@ -37,7 +37,6 @@ func main() {
 	urlPattern := path.Join("/yd-info", "/*filepath")
 	router.GET(urlPattern, controller.OssFileGetHandler)
 	router.HEAD(urlPattern, controller.OssFileGetHandler)
-
 	router.GET(
 		"/", middleware.UserMiddleware, controller.IndexHandler)
 	router.POST(
